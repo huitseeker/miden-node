@@ -277,8 +277,9 @@ mod test {
         let mut client_2 = ApiClient::connect("http://127.0.0.1:50052").await.unwrap();
 
         // Create a mock transaction to send to the server
-        let mut mock_chain = MockChain::new();
-        let account = mock_chain.add_pending_existing_wallet(Auth::BasicAuth, vec![]);
+        let mut mock_chain = MockChain::builder();
+        let account = mock_chain.add_existing_wallet_with_assets(Auth::BasicAuth, vec![]).unwrap();
+        let mut mock_chain = mock_chain.build().unwrap();
 
         let fungible_asset_1: Asset =
             FungibleAsset::new(ACCOUNT_ID_PUBLIC_FUNGIBLE_FAUCET.try_into().unwrap(), 100)
