@@ -229,13 +229,12 @@ fn invalid_argument<E: ErrorReport>(err: E) -> Status {
 mod test {
     use std::time::Duration;
 
-    use miden_lib::transaction::TransactionKernel;
     use miden_node_utils::cors::cors_for_grpc_web_layer;
     use miden_objects::{
         asset::{Asset, FungibleAsset},
         note::NoteType,
         testing::account_id::{ACCOUNT_ID_PUBLIC_FUNGIBLE_FAUCET, ACCOUNT_ID_SENDER},
-        transaction::{ProvenTransaction, TransactionScript, TransactionWitness},
+        transaction::{ProvenTransaction, TransactionWitness},
     };
     use miden_testing::{Auth, MockChain};
     use miden_tx::utils::Serializable;
