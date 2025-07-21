@@ -42,7 +42,7 @@ CREATE TABLE notes (
     aux            INTEGER NOT NULL,
     execution_hint INTEGER NOT NULL,
     merkle_path    BLOB    NOT NULL,
-    consumed       INTEGER NOT NULL, -- boolean
+    consumed       INTEGER,          -- 32-bit block number
     nullifier      BLOB,             -- Only known for public notes, null for private notes
     assets         BLOB,
     inputs         BLOB,
@@ -69,7 +69,7 @@ CREATE INDEX idx_unconsumed_network_notes ON notes(execution_mode, consumed);
 CREATE TABLE note_scripts (
     script_root BLOB NOT NULL,
     script      BLOB NOT NULL,
-  
+
     PRIMARY KEY (script_root)
 ) STRICT, WITHOUT ROWID;
 
